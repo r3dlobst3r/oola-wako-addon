@@ -15,6 +15,7 @@ import { PluginDetailComponent } from './plugin-detail/plugin-detail.component';
 import { ToastService } from './services/toast.service';
 import { EpisodeItemOptionComponent } from './episode-item-option/episode-item-option.component';
 import { ShowButtonComponent } from './show-button/show-button.component';
+import { OmdbApiService } from './services/omdb-api.service';
 
 const components = [
   MovieButtonComponent,
@@ -29,7 +30,7 @@ const components = [
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule.forRoot(), TranslateModule.forRoot()],
   declarations: [...components],
-  providers: [PluginService, ToastService] // Add your services here. Do not use provideIn: 'root' in your services
+  providers: [PluginService,ToastService ,OmdbApiService] // Add your services here. Do not use provideIn: 'root' in your services
 })
 export class PluginModule extends PluginBaseModule {
   static pluginService = PluginService;
