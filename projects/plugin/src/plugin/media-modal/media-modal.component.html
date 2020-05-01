@@ -28,19 +28,27 @@
 
   <ion-card>
     <ion-card-content *ngIf="movie">
-      <ion-button (click)="getRatings(movie.imdbId)">
-        Open on Imdb
+      <ion-button>
+          <div *ngFor="let rating of ratings">
+            <figure *ngIf='rating.source==="Metacritic"'><img class="icon-img" src="assets/icon/m.png" />
+              <figcaption class="caption-txt">{{rating.value}}</figcaption>
+            </figure>
+            <figure *ngIf='rating.source==="Rotten Tomatoes"'><img class="icon-img" src="assets/icon/Tomato.png" />
+              <figcaption class="caption-txt">{{rating.value}}</figcaption>
+            </figure>
+            <figure *ngIf='rating.source==="Internet Movie Database"'><img class="icon-img"
+                src="assets/icon/IMDB.png" />
+              <figcaption class="caption-txt">{{rating.value}}</figcaption>
+            </figure>
+          </div>
       </ion-button>
     </ion-card-content>
-    <ion-card-content *ngIf="show">
+    <!-- <ion-card-content *ngIf="show">
       <ion-button (click)="openImdb(show.imdbId)">
-        Open on Imdb
+
       </ion-button>
-    </ion-card-content>
-    <h2>list of movies</h2>
-    <ul *ngFor="let rating of ratings">
-      <li>{{rating.source}} {{rating.value}}</li>
- </ul> 
+    </ion-card-content> -->
+
   </ion-card>
-  
+
 </ion-content>

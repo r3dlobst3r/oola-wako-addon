@@ -14,24 +14,7 @@ export class OmdbApiService {
   }
 
   getRatings(imdbID: string) {
-    return this.getOMDBRatings(imdbID)
-    // .pipe(
-    //   map((data) => {
-    //     let movie: IMovie = null;
-    //     try {
-    //     //console.log(data);
-    //     //console.log(data.Title);
-    //     this.movie = data;
-    //       //movie.title.push("asdasdad");
-    //     //    movie.ratings.push(data.Ratings[0]);
-    //     //   const title="dadad"
-    //     console.log(this.movie.Ratings);
-
-      //   } catch (e) {}
-      //   //console.log(movie);
-      //   return this.movie;
-      // })
-    //);
+    return this.getOMDBRatings(imdbID);
   }
 }
 
@@ -41,7 +24,7 @@ export interface Ratings {
 }
 
 export interface IMovie {
-  Title: string;
+  title: string;
   year: string;
   rated: string;
   released: string;
@@ -55,7 +38,7 @@ export interface IMovie {
   country: string;
   awards: string;
   poster: string;
-  Ratings: Ratings[];
+  ratings: Ratings[];
   metascore: string;
   imdbrating: string;
   imdbVotes: string;
