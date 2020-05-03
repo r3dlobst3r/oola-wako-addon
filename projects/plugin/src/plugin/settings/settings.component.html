@@ -1,4 +1,18 @@
-<p>
-      {{ 'settings.title' | translate }}
-</p>
-<p>My plugin</p>
+<ion-content>
+      <ion-card>
+            <ion-card-header>
+                  {{ 'settings.title' | translate }}
+            </ion-card-header>
+      </ion-card>
+      <ion-card>
+            <ion-card-content>
+                  <ion-card-header>
+                        <ion-card-title>{{ 'settings.OMDB' | translate }}</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content>{{ 'settings.OMDBDes' | translate }}</ion-card-content>
+                  <ion-button>
+                        {{ 'settings.OMDBAdd' | translate }}
+                  </ion-button>
+            </ion-card-content>
+      </ion-card>
+</ion-content>

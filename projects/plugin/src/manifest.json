@@ -1,11 +1,11 @@
 {
   "$schema": "../../../node_modules/@wako-app/mobile-sdk/dist/manifest-schema.json",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "id": "plugin.my-plugin",
-  "name": "My First Plugin",
-  "description": "Will make your life better",
-  "author": "wako",
-  "actions": ["movies", "episodes"],
+  "name": "Oola",
+  "description": "Get the movie ratings on the fly",
+  "author": "Sha",
+  "actions": ["movies"],
   "entryPointV2": "/plugin.js",
   "entryPoint": "https://raw.githubusercontent.com/wako-app/addon-starter-kit/wako3/dist/plugin.js",
   "languages": {
@@ -13,8 +13,6 @@
     "fr": "/i18n/fr.json"
   },
   "changeLogs": {
-    "1.0.0": "Final version",
-    "0.9.0": "Improve performance",
     "0.0.1": "Initial Version"
   }
 }

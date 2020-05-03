@@ -4,8 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start:wako-like": "npm run clean && npm run build:plugin:dev && concurrently \" npm run watch:plugin \"  \" ng run wako-like:serve\" ",
-    "serve:wako-like": "npm run clean && npm run build:plugin:dev && concurrently \" npm run watch:plugin \"  \" ng run wako-like:serve --host= 192.168.55.1  \" ",
+    "serve:wako-like": "npm run clean && npm run build:plugin:dev && concurrently \" npm run watch:plugin \"  \" ng run wako-like:serve --host= 192.168.178.99  \" ",
     "build": "npm run clean && npm run build:plugin",
     "test": "ng test",
     "lint": "ng lint",

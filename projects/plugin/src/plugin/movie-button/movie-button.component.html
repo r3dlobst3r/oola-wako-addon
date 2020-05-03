@@ -1,1 +1,13 @@
-<ion-button expand="block" (click)="openMovie()" color="custom"> My movie : {{ movie.title }} {{ movie.traktId }} </ion-button>
+<ion-button expand="block" color="custom">
+    <div *ngFor="let rating of ratings">
+        <figure *ngIf='rating.source==="Metacritic"'><img class="icon-img" alt="metacritic" src="https://upload.wikimedia.org/wikipedia/commons/2/20/Metacritic.svg" />
+            <figcaption class="caption-txt">{{rating.value}}</figcaption>
+        </figure>
+        <figure *ngIf='rating.source==="Rotten Tomatoes"'><img class="icon-img" alt="rotten tomatoes" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Rotten_Tomatoes.svg/209px-Rotten_Tomatoes.svg.png" />
+            <figcaption class="caption-txt">{{rating.value}}</figcaption>
+        </figure>
+        <figure *ngIf='rating.source==="Internet Movie Database"'><img class="icon-img" alt="IMDb" src="https://upload.wikimedia.org/wikipedia/commons/6/6a/New-imdb-logo.png" />
+            <figcaption class="caption-txt">{{rating.value}}</figcaption>
+        </figure>
+    </div>
+</ion-button>
