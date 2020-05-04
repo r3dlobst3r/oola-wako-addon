@@ -21,7 +21,6 @@ export class MovieButtonComponent extends MovieDetailBaseComponent {
   }
 
   getRatings(imdbId: string) {
-    console.log('s');
     this.omdbService.getAPIKey('storedOMDBAPIkey').then((val) => {
       this.omdbService.getRatings(val, imdbId).subscribe(
         (res: any) => {

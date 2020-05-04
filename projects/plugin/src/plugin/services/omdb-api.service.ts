@@ -18,12 +18,14 @@ export class OmdbApiService {
     return this.getOMDBRatings(api, imdbID);
   }
 
-  setAPI(apikey) {
-    this.storage.set('storedOMDBAPIkey', apikey);
+  setAPI(value, key) {
+    console.log(key);
+    console.log(value);
+    this.storage.set(key, value);
   }
 
   getAPIKey(key) {
-    return this.storage.get('storedOMDBAPIkey');
+    return this.storage.get(key);
   }
 }
 

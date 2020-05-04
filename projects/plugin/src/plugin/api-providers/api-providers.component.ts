@@ -7,12 +7,17 @@ import { OmdbApiService } from '../services/omdb-api.service';
   styleUrls: ['./api-providers.component.css']
 })
 export class ApiProvidersComponent implements OnInit {
-  apiKeyValue: string = 'sss';
   constructor(private omdbService: OmdbApiService) {}
 
-  ngOnInit() {}
+  apiKeyValue: string;
+
+  ngOnInit() {
+    this.omdbService.getAPIKey('storedOMDBAPIkey').then((val) => {
+      this.apiKeyValue = val;
+    });
+  }
 
   onAPISubmit() {
-    this.omdbService.setAPI(this.apiKeyValue);
+    this.omdbService.setAPI(this.apiKeyValue, 'storedOMDBAPIkey');
   }
 }
