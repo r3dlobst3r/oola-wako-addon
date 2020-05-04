@@ -21,7 +21,6 @@ export class MediaModalComponent implements OnInit {
     this.toastService.simpleMessage('openMedia', {
       imdbId: this.movie ? this.movie.imdbId : this.show.imdbId
     });
-    this.getRatings(this.movie ? this.movie.imdbId : this.show.imdbId);
   }
 
   dismiss() {
@@ -31,34 +30,4 @@ export class MediaModalComponent implements OnInit {
   openImdb(imdbId: string) {
     BrowserService.open(`http://www.imdb.com/title/${imdbId}/`);
   }
-
-  getRatings(imdbId: string) {
-    this.omdbService.getRatings(imdbId).subscribe(
-      (res: any) => {
-        console.log(res.Ratings);
-        // this.ratings = res.Ratings;
-        res.Ratings.forEach((res) => {
-          this.ratings.push({
-            source: res.Source,
-            value: res.Value
-          });
-        });
-        //this.transform(this.ratings);
-      },
-      (error) => {
-        console.log('Error: ', error);
-        //this.response = null;
-      }
-    );
-  }
-  // transform(ratings: Ratings[]) {
-  //   ratings.forEach((rating) => {
-  //     if (rating.source == 'Metacritic') {
-  //       rating.source = (Math.round(+rating.value) * 100).toString();
-  //     }
-  //     else if (rating.source == 'Internet Movie Database') {
-  //       rating.source = (Math.round(+rating.value) * 10).toString();
-  //     }
-  //   });
- // }
 }
