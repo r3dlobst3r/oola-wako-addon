@@ -21,23 +21,24 @@ export class MovieButtonComponent extends MovieDetailBaseComponent {
   }
 
   getRatings(imdbId: string) {
-    this.omdbService.getRatings(imdbId).subscribe(
-      (res: any) => {
-        console.log(res.Ratings);
-        // this.ratings = res.Ratings;
-        res.Ratings.forEach((res) => {
-          this.ratings.push({
-            source: res.Source,
-            value: res.Value
+    console.log('s');
+    this.omdbService.getAPIKey('storedOMDBAPIkey').then((val) => {
+      this.omdbService.getRatings(val, imdbId).subscribe(
+        (res: any) => {
+          console.log(res.Ratings);
+          res.Ratings.forEach((res) => {
+            this.ratings.push({
+              source: res.Source,
+              value: res.Value
+            });
           });
-        });
-        this.ratings = this.transform(this.ratings);
-      },
-      (error) => {
-        console.log('Error: ', error);
-        //this.response = null;
-      }
-    );
+          this.ratings = this.transform(this.ratings);
+        },
+        (error) => {
+          console.log('Error: ', error);
+        }
+      );
+    });
   }
 
   transform(ratings: Ratings[]) {

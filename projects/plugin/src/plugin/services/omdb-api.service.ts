@@ -1,20 +1,29 @@
 import { Injectable } from '@angular/core';
 import { WakoHttpRequestService, Movie } from '@wako-app/mobile-sdk';
-import { map } from 'rxjs/operators';
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class OmdbApiService {
   protected basUrl = 'http://www.omdbapi.com/?apikey=';
-  constructor() {}
+  constructor(private storage: Storage) {}
   movie: IMovie;
+  ratings: Ratings[] = [];
 
-  getOMDBRatings(imdbID: string) {
-    var apikey = '9ff50eff';
-    return WakoHttpRequestService.get<any>(this.basUrl + `${apikey}&i=${imdbID}`);
+  getOMDBRatings(api: string, imdbID: string) {
+    console.log(api);
+    return WakoHttpRequestService.get<any>(this.basUrl + `${api}&i=${imdbID}`);
   }
 
-  getRatings(imdbID: string) {
-    return this.getOMDBRatings(imdbID);
+  getRatings(api: string, imdbID: string) {
+    return this.getOMDBRatings(api, imdbID);
+  }
+
+  setAPI(apikey) {
+    this.storage.set('storedOMDBAPIkey', apikey);
+  }
+
+  getAPIKey(key) {
+    return this.storage.get('storedOMDBAPIkey');
   }
 }
 

@@ -16,6 +16,7 @@ import { ToastService } from './services/toast.service';
 import { EpisodeItemOptionComponent } from './episode-item-option/episode-item-option.component';
 import { ShowButtonComponent } from './show-button/show-button.component';
 import { OmdbApiService } from './services/omdb-api.service';
+import { ApiProvidersComponent } from './api-providers/api-providers.component';
 
 const components = [
   MovieButtonComponent,
@@ -24,7 +25,8 @@ const components = [
   ShowButtonComponent,
   SettingsComponent,
   MediaModalComponent,
-  PluginDetailComponent
+  PluginDetailComponent,
+  ApiProvidersComponent
 ];
 
 @NgModule({
@@ -40,4 +42,5 @@ export class PluginModule extends PluginBaseModule {
   static episodeItemOptionComponent = EpisodeItemOptionComponent;
   static showComponent = ShowButtonComponent;
   static pluginDetailComponent = PluginDetailComponent;
+  static apiProvidersComponent = ApiProvidersComponent;
 }

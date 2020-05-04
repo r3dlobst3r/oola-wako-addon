@@ -5,5 +5,9 @@
     "OMDB":"OMDB",
     "OMDBDes": "The OMDb API is a RESTful web service to obtain movie information, all content and images on the site are contributed and maintained by our users.",
     "OMDBAdd":"Add OMDB API key"
+  },
+  "details":{
+    "title":"Oola - Details",
+    "OMDBDes": "The OMDb API is a RESTful web service to obtain movie information, all content and images on the site are contributed and maintained by our users."
   }
 }
