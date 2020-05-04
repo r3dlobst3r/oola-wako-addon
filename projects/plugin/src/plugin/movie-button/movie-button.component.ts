@@ -11,7 +11,8 @@ import { Ratings, OmdbApiService } from '../services/omdb-api.service';
 export class MovieButtonComponent extends MovieDetailBaseComponent {
   movie: Movie;
   ratings: Ratings[] = [];
-
+  hasError: boolean = false;
+  errorDetails:string="";
   constructor(private modalCtrl: ModalController, private omdbService: OmdbApiService) {
     super();
   }
@@ -34,7 +35,11 @@ export class MovieButtonComponent extends MovieDetailBaseComponent {
           this.ratings = this.transform(this.ratings);
         },
         (error) => {
-          console.log('Error: ', error);
+          console.log('Error: ', error.status);
+          this.hasError = true;
+          if ((error.status = '401')) {
+            this.errorDetails="Enter a Valid API";
+          }
         }
       );
     });
