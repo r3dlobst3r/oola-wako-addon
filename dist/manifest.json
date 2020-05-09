@@ -1,0 +1,21 @@
+{
+  "$schema": "../../../node_modules/@wako-app/mobile-sdk/dist/manifest-schema.json",
+  "version": "1.1.0",
+  "id": "plugin.Oola",
+  "name": "Oola",
+  "description": "Get the movie ratings on the fly",
+  "author": "Sha",
+  "actions": ["movies"],
+  "entryPointV2": "/plugin.js",
+  "entryPoint": "https://raw.githubusercontent.com/wako-app/addon-starter-kit/wako3/dist/plugin.js",
+  "languages": {
+    "en": "/i18n/en.json",
+    "fr": "/i18n/fr.json"
+  },
+  "changeLogs": {
+    "1.1.0": "TMDB API Integration",
+    "1.0.0": "Initial Public Version",
+    "0.0.2": "OMDB key through UI",
+    "0.0.1": "Initial Private Version"
+  }
+}
