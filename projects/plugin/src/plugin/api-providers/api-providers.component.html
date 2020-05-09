@@ -1,7 +1,22 @@
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-card-content>OMDB API Key</ion-card-content>
+      <ion-item>
+        <ion-input value="" [(ngModel)]="omdbAPIKeyValue" placeholder="Enter OMDB API Key"></ion-input>
+        <ion-button (click)="onOMDBAPISubmit()">Submit</ion-button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 
-  <ion-card-subtitle>Add OMDB API key</ion-card-subtitle>
-  <ion-item>
-    <ion-input value="" [(ngModel)]="apiKeyValue" placeholder="Enter OMDB API Key"></ion-input>
-    <ion-button (click)="onAPISubmit()">Submit</ion-button>
-  </ion-item>
+  <ion-card>
+    <ion-card-content>
+      <ion-card-content>TMDB API Key (v3)</ion-card-content>
+      <ion-item>
+        <ion-input value="" [(ngModel)]="tmdbAPIKeyValue" placeholder="Enter TMDB API Key"></ion-input>
+        <ion-button (click)="onTMDBAPISubmit()">Submit</ion-button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 
+</ion-content>

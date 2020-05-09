@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OmdbApiService } from '../services/omdb-api.service';
+import { RatingApiService } from '../services/ratings-api.service';
 
 @Component({
   selector: 'app-api-providers',
@@ -7,17 +7,26 @@ import { OmdbApiService } from '../services/omdb-api.service';
   styleUrls: ['./api-providers.component.css']
 })
 export class ApiProvidersComponent implements OnInit {
-  constructor(private omdbService: OmdbApiService) {}
+  constructor(private omdbService: RatingApiService) {}
 
-  apiKeyValue: string;
+  omdbAPIKeyValue: string;
+  tmdbAPIKeyValue:string;
 
   ngOnInit() {
     this.omdbService.getAPIKey('storedOMDBAPIkey').then((val) => {
-      this.apiKeyValue = val;
+      this.omdbAPIKeyValue = val;
+    });
+
+    this.omdbService.getAPIKey('storedTMDBAPIkey').then((val) => {
+      this.tmdbAPIKeyValue = val;
     });
   }
 
-  onAPISubmit() {
-    this.omdbService.setAPI(this.apiKeyValue, 'storedOMDBAPIkey');
+  onOMDBAPISubmit() {
+    this.omdbService.setAPI(this.omdbAPIKeyValue, 'storedOMDBAPIkey');
+  }
+
+  onTMDBAPISubmit() {
+    this.omdbService.setAPI(this.tmdbAPIKeyValue, 'storedTMDBAPIkey');
   }
 }

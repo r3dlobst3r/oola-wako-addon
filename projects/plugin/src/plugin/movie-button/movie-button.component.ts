@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Movie, MovieDetailBaseComponent } from '@wako-app/mobile-sdk';
 import { ModalController } from '@ionic/angular';
 import { MediaModalComponent } from '../media-modal/media-modal.component';
-import { Ratings, OmdbApiService } from '../services/omdb-api.service';
+import { Ratings, RatingApiService } from '../services/ratings-api.service';
 
 @Component({
   templateUrl: './movie-button.component.html',
@@ -12,8 +12,8 @@ export class MovieButtonComponent extends MovieDetailBaseComponent {
   movie: Movie;
   ratings: Ratings[] = [];
   hasError: boolean = false;
-  errorDetails:string="";
-  constructor(private modalCtrl: ModalController, private omdbService: OmdbApiService) {
+  errorDetails: string = '';
+  constructor(private modalCtrl: ModalController, private omdbService: RatingApiService) {
     super();
   }
 
@@ -21,31 +21,23 @@ export class MovieButtonComponent extends MovieDetailBaseComponent {
     this.getRatings(this.movie.imdbId);
   }
 
-  getRatings(imdbId: string) {
-    this.omdbService.getAPIKey('storedOMDBAPIkey').then((val) => {
-      this.omdbService.getRatings(val, imdbId).subscribe(
-        (res: any) => {
-          console.log(res.Ratings);
-          res.Ratings.forEach((res) => {
-            this.ratings.push({
-              source: res.Source,
-              value: res.Value
-            });
-          });
-          this.ratings = this.transform(this.ratings);
-        },
-        (error) => {
-          console.log('Error: ', error.status);
-          this.hasError = true;
-          if ((error.status = '401')) {
-            this.errorDetails="Enter a Valid API";
-          }
-        }
-      );
-    });
+  async getRatings(imdbId: string) {
+    const omdbApi = await this.omdbService.getAPIKey('storedOMDBAPIkey');
+    const tmdbApi = await this.omdbService.getAPIKey('storedTMDBAPIkey');
+    this.omdbService.getRatings(omdbApi, tmdbApi, imdbId).subscribe(
+      (res) => {
+        console.log('Component');
+        console.log(res);
+        this.ratings = res;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   transform(ratings: Ratings[]) {
+    console.log(ratings);
     let hasIMDb: boolean = false;
     let hasRT: boolean = false;
     let hasMeatCritic: boolean = false;

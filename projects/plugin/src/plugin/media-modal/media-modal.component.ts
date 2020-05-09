@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BrowserService, Episode, Movie, Show } from '@wako-app/mobile-sdk';
 import { ModalController } from '@ionic/angular';
 import { ToastService } from '../services/toast.service';
-import { OmdbApiService, IMovie, Ratings } from '../services/omdb-api.service';
+import { IMovie, Ratings, RatingApiService } from '../services/ratings-api.service';
 import { transformAll } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
@@ -15,7 +15,7 @@ export class MediaModalComponent implements OnInit {
   show: Show;
   episode: Episode;
   ratings: Ratings[] = [];
-  constructor(private modalCtrl: ModalController, private toastService: ToastService, private omdbService: OmdbApiService) {}
+  constructor(private modalCtrl: ModalController, private toastService: ToastService, private omdbService: RatingApiService) {}
 
   ngOnInit() {
     this.toastService.simpleMessage('openMedia', {
