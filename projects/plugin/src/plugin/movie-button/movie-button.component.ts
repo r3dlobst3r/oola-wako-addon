@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Movie, MovieDetailBaseComponent } from '@wako-app/mobile-sdk';
+import { Movie, MovieDetailBaseComponent, BrowserService } from '@wako-app/mobile-sdk';
 import { ModalController } from '@ionic/angular';
 import { MediaModalComponent } from '../media-modal/media-modal.component';
 import { Ratings, RatingApiService } from '../services/ratings-api.service';
@@ -25,10 +25,9 @@ export class MovieButtonComponent extends MovieDetailBaseComponent {
     const omdbApi = await this.omdbService.getAPIKey('storedOMDBAPIkey');
     const tmdbApi = await this.omdbService.getAPIKey('storedTMDBAPIkey');
     this.omdbService.getRatings(omdbApi, tmdbApi, imdbId).subscribe(
-      (res) => {
-        console.log('Component');
-        console.log(res);
-        this.ratings = res;
+      (ratings) => {
+        console.log(ratings);
+        this.ratings = ratings;
       },
       (error) => {
         console.log(error);
@@ -36,42 +35,49 @@ export class MovieButtonComponent extends MovieDetailBaseComponent {
     );
   }
 
-  transform(ratings: Ratings[]) {
-    console.log(ratings);
-    let hasIMDb: boolean = false;
-    let hasRT: boolean = false;
-    let hasMeatCritic: boolean = false;
+  // transform(ratings: Ratings[]) {
+  //   console.log(ratings);
+  //   let hasIMDb: boolean = false;
+  //   let hasRT: boolean = false;
+  //   let hasMeatCritic: boolean = false;
 
-    ratings.forEach((rating) => {
-      if (rating.source == 'Internet Movie Database') {
-        hasIMDb = true;
-      } else if (rating.source == 'Rotten Tomatoes') {
-        hasRT = true;
-      } else if (rating.source == 'Metacritic') {
-        hasMeatCritic = true;
-      }
-    });
+  //   ratings.forEach((rating) => {
+  //     if (rating.source == 'Internet Movie Database') {
+  //       hasIMDb = true;
+  //     } else if (rating.source == 'Rotten Tomatoes') {
+  //       hasRT = true;
+  //     } else if (rating.source == 'Metacritic') {
+  //       hasMeatCritic = true;
+  //     }
+  //   });
 
-    if (!hasIMDb) {
-      ratings.push({
-        source: 'Internet Movie Database',
-        value: '--'
-      });
-    }
-    if (!hasRT) {
-      ratings.push({
-        source: 'Rotten Tomatoes',
-        value: '--'
-      });
-    }
-    if (!hasMeatCritic) {
-      ratings.push({
-        source: 'Metacritic',
-        value: '--'
-      });
-    }
+  //   if (!hasIMDb) {
+  //     ratings.push({
+  //       source: 'Internet Movie Database',
+  //       value: '--',
+  //       sourceUrl: ''
+  //     });
+  //   }
+  //   if (!hasRT) {
+  //     ratings.push({
+  //       source: 'Rotten Tomatoes',
+  //       value: '--',
+  //       sourceUrl: this.omdbService.
+  //     });
+  //   }
+  //   if (!hasMeatCritic) {
+  //     ratings.push({
+  //       source: 'Metacritic',
+  //       value: '--',
+  //       sourceUrl: ''
+  //     });
+  //   }
 
-    return ratings;
+  //   return ratings;
+  // }
+
+  openProviders(url) {
+    BrowserService.open(url);
   }
 
   setMovie(movie: Movie): any {

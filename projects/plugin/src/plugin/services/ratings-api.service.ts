@@ -6,8 +6,8 @@ import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class RatingApiService {
-  protected omdbBaseUrl = 'http://www.omdbapi.com/?apikey=';
-  protected tmdbBaseUrl = 'https://api.themoviedb.org/3/movie/';
+  public omdbBaseUrl = 'http://www.omdbapi.com/?tomatoes=true&apikey=';
+  public tmdbBaseUrl = 'https://api.themoviedb.org/3/movie/';
   constructor(private storage: Storage) {}
   movie: IMovie;
 
@@ -15,11 +15,30 @@ export class RatingApiService {
     let ratings: Ratings[] = [];
     return this.getOMDBRatings(omdbApi, imdbId).pipe(
       switchMap((omdbResults) => {
+        console.log(omdbResults);
         omdbResults.Ratings.forEach((res) => {
-          ratings.push({
-            source: res.Source,
-            value: res.Value
-          });
+          if (res.Source == Providers.IMDB) {
+            ratings.push({
+              source: res.Source,
+              value: res.Value,
+              sourceUrl: 'https://www.imdb.com/title/' + imdbId,
+              providerIconUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/New-imdb-logo.png'
+            });
+          } else if (res.Source == Providers.RT) {
+            ratings.push({
+              source: res.Source,
+              value: res.Value,
+              sourceUrl: omdbResults.tomatoURL,
+              providerIconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Rotten_Tomatoes.svg/209px-Rotten_Tomatoes.svg.png'
+            });
+          } else if (res.Source == Providers.MetaCritic) {
+            ratings.push({
+              source: res.Source,
+              value: res.Value,
+              sourceUrl: 'https://www.metacritic.com/movie/',
+              providerIconUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/20/Metacritic.svg'
+            });
+          }
         });
         return this.getTMDBRatings(tmdbApi, imdbId, ratings);
       }),
@@ -39,9 +58,12 @@ export class RatingApiService {
   getTMDBRatings(api: string, imdbID: string, ratings: Ratings[]): Observable<any> {
     return WakoHttpRequestService.get<any>(this.tmdbBaseUrl + `${imdbID}?api_key=${api}`).pipe(
       map((tmdbResults) => {
+        console.log(tmdbResults);
         ratings.push({
           source: 'TMDB',
-          value: tmdbResults.vote_average
+          value: tmdbResults.vote_average,
+          sourceUrl: 'https://www.themoviedb.org/movie/' + tmdbResults.id,
+          providerIconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Tmdb.new.logo.svg/512px-Tmdb.new.logo.svg.png'
         });
         return ratings;
       }),
@@ -66,6 +88,8 @@ export class RatingApiService {
 export interface Ratings {
   source: string;
   value: string;
+  sourceUrl: string;
+  providerIconUrl: string;
 }
 
 export interface IMovie {
@@ -95,3 +119,11 @@ export interface IMovie {
   website: string;
   response: string;
 }
+
+export enum Providers {
+  IMDB = 'Internet Movie Database',
+  RT = 'Rotten Tomatoes',
+  MetaCritic = 'Metacritic'
+}
+
+

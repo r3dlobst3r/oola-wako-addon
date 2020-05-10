@@ -1,6 +1,6 @@
 {
   "$schema": "../../../node_modules/@wako-app/mobile-sdk/dist/manifest-schema.json",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "id": "plugin.Oola",
   "name": "Oola",
   "description": "Get the movie ratings on the fly",
@@ -13,6 +13,7 @@
     "fr": "/i18n/fr.json"
   },
   "changeLogs": {
+    "1.1.1": "Ratings Icons are Clickable",
     "1.1.0": "TMDB API Integration",
     "1.0.0": "Initial Public Version",
     "0.0.2": "OMDB key through UI",

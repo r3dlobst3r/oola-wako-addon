@@ -9,9 +9,14 @@ ion-button {
 .caption-txt {
   font-size: 10px;
   font-weight: bold;
-  color:white;
+  color: white;
 }
 
-figure{
+figure {
   margin: 30px;
+}
+
+figure:hover {
+  opacity: 0.3;
+  filter: alpha(opacity=30);
 }
