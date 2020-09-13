@@ -1,6 +1,5 @@
 # FAQ
 
-This is the starter kit to create your own add-on for [wako](https://wako.app).
 
 > ### What is an add-on?
 
