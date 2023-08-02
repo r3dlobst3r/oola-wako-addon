@@ -6,7 +6,7 @@
   "description": "Get the movie ratings on the fly",
   "author": "Sha",
   "actions": ["movies"],
-  "entryPointV3": "https://raw.githubusercontent.com/wako-app/addon-starter-kit/wako3/dist/plugin.js",
+  "entryPointV3": "https://raw.githubusercontent.com/r3dlobst3r/oola-wako-addon/master/dist/plugin.js",
   "languages": {
     "en": "/i18n/en.json",
     "fr": "/i18n/fr.json"
