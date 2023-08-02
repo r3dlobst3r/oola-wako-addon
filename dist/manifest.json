@@ -1,21 +1,21 @@
 {
   "$schema": "../../../node_modules/@wako-app/mobile-sdk/dist/manifest-schema.json",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "id": "plugin.Oola",
   "name": "Oola",
   "description": "Get the movie ratings on the fly",
-  "author": "Sha",
-  "actions": ["movies"],
+  "author": "r3dlobst3r",
+  "actions": ["movies", "episodes", "episodes-item-option", "file-explorer"],
   "entryPointV3": "https://raw.githubusercontent.com/r3dlobst3r/oola-wako-addon/master/dist/plugin.js",
   "languages": {
-    "en": "/i18n/en.json",
-    "fr": "/i18n/fr.json"
+    "en": "https://raw.githubusercontent.com/r3dlobst3r/oola-wako-addon/master/dist/i18n/en.json"
   },
   "changeLogs": {
-    "1.1.1": "Ratings Icons are Clickable",
-    "1.1.0": "TMDB API Integration",
-    "1.0.0": "Initial Public Version",
-    "0.0.2": "OMDB key through UI",
-    "0.0.1": "Initial Private Version"
+    "4.2.7": "Fix shared issue. Handle Outplayer for iOS",
+    "4.2.5": "Handle 204 response from RD",
+    "4.2.4": "Use latest dependencies + fix some bugs with RD",
+    "4.2.2": "Fix issue on last version of VLC for iOS",
+    "4.2.1": "Fix:<br>- provider could be deleted on automatic update if network issue<br>- share feature stop working<br>- File explorer: PM links inside directories weren't not showing",
+    "4.2.0": "Search for infohash if magnet link not found (from PR #78 thanks to Minefield)"
   }
 }
